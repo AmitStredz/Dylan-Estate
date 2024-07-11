@@ -5,6 +5,7 @@ This is a project that replicates the design provided in the figma file in the j
 Users can register and list their properties by providing all necessary details and preview all of them at the last.
 
 The project is built on React framework using Typescript.
+
 The design is made fully responsive using TailwindCSS.
 
 ## Installation
