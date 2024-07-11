@@ -19,7 +19,7 @@ const Header2: React.FC<HeaderProps> = ({ customClass }) => {
       </div>
 
       <div className="right flex gap-5 xl:gap-10 font-400 font-merriweatherSans text-[14px] text-center">
-        <div className={`titles flex gap-5 xl:gap-10 transition-all ${toggle? "right-0 z-50" : "-right-[100%]"}`}>
+        <div className={`titles flex gap-5 xl:gap-10 transition-all ${toggle? "right-0 z-50" : "-right-[120%]"}`}>
           <div
             className="flex justify-end p-2 lg:hidden"
             onClick={() => setToggle(false)}

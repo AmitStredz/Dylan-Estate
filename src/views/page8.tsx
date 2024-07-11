@@ -76,10 +76,9 @@ const Page8 = () => {
   useEffect(() => {
     // Load images from localStorage
     const storedImages = localStorage.getItem("selectedImages");
-    console.log("image retrieved...");
     if (storedImages) {
       setSelectedImages(JSON.parse(storedImages));
-      console.log("image got...");
+      console.log("image retrieved...");
     }
   }, []);
 
@@ -91,7 +90,7 @@ const Page8 = () => {
   useEffect(() => {
     // Retrieve amenity data from localStorage
     const storedAmenities = localStorage.getItem("amenities");
-    console.log("storedAmenity", storedAmenities);
+    // console.log("storedAmenity", storedAmenities);
     if (storedAmenities) {
       const parsedAmenities: Amenity[] = JSON.parse(storedAmenities);
 
@@ -102,7 +101,7 @@ const Page8 = () => {
 
       // Set filtered amenities state
       setAmenities(filtered);
-      console.log("hello", amenities);
+      console.log("Amenities", amenities);
     }
   }, []);
 
@@ -172,20 +171,20 @@ const Page8 = () => {
     <div className="h-full w- overflow-x-hidden">
       <Header customClass="bg-[#FCF8F4]" />
 
-      <div className="flex flex-col p-5 gap-10 px-14 h-full w-full font-inter">
+      <div className="flex flex-col p-5 gap-10 sm:px-8 md:px-14 h-full w-full font-inter">
         {/* Back arrow */}
         <div>
           <ArrowLeft onClick={() => navigate(-1)} className="cursor-pointer" />
         </div>
 
         {/* Section 1 (Property Details) */}
-        <div className="flex flex-row gap-10 w-full">
+        <div className="flex flex-col lg:flex-row gap-5 lg:gap-10 w-full">
           {/* Left */}
-          <div className="flex flex-col gap-10 w-2/3">
+          <div className="flex flex-col gap-10 w-full lg:w-2/3">
             {/* Property Preview */}
             <div className="">
               {/* Title */}
-              <h1 className="text-[26px] font-400 font-merriweatherSans mb-4">
+              <h1 className="text-[20px] sm:text-[26px] font-400 font-merriweatherSans mb-4">
                 {localStorage.getItem("bhkType") || "1 BHK"}{" "}
                 {localStorage.getItem("propertySubType") || "House / Villa"} For{" "}
                 {localStorage.getItem("propertyFor") || "Rent"} in{" "}
@@ -194,17 +193,17 @@ const Page8 = () => {
               </h1>
               {/* Address */}
               <div className="address flex justify-between p-2">
-                <span className="flex items-center font-300 text-[16px]">
+                <span className="flex items-center font-300 text-[12px] sm:text-[16px]">
                   <MapPin className="mr-1" />
                   {localStorage.getItem("locality") || "Chandra Nagar"}, near{" "}
                   {localStorage.getItem("landmark") || "Shivaji Temple"},{" "}
                   {localStorage.getItem("city") || "Lucknow"}
                 </span>
                 <div className="flex gap-2">
-                  <div className="shadow-2xl shadow-black rounded-full cursor-pointer p-2">
+                  <div className="flex items-center shadow-2xl shadow-black rounded-full cursor-pointer p-1 sm:p-2">
                     <Heart />
                   </div>
-                  <div className="shadow-2xl shadow-black rounded-full cursor-pointer p-2">
+                  <div className="flex items-center shadow-2xl shadow-black rounded-full cursor-pointer p-1 sm:p-2">
                     <Upload />
                   </div>
                 </div>
@@ -280,13 +279,13 @@ const Page8 = () => {
             </div>
 
             {/* Property Overview */}
-            <div className="flex flex-col gap-10 p-10 border-x-2 border-b-2 rounded-md">
-              <h2 className="text-[32px] font-500 font-merriweatherSans">
+            <div className="flex flex-col gap-10 p-5 sm:p-10 border-x-2 border-b-2 rounded-md">
+              <h2 className="text-[20px] sm:text-[32px] max-sm:text-center font-500 font-merriweatherSans">
                 Property Overview
               </h2>
-              <div className="grid grid-cols-3 gap-10">
-                {/* Block */}
-                <div className="flex">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 text-center">
+                {/* Bedroom */}
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img src={bedroom} alt="bedroom" className="object-cover" />
                   </div>
@@ -301,7 +300,7 @@ const Page8 = () => {
                 </div>
 
                 {/* Bathroom */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img
                       src={bahthroom}
@@ -320,7 +319,7 @@ const Page8 = () => {
                 </div>
 
                 {/* Area */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img src={area} alt="bedroom" className="object-cover" />
                   </div>
@@ -334,7 +333,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* Floor */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img src={floor} alt="bedroom" className="object-cover" />
                   </div>
@@ -348,7 +347,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* Total Floors */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img
                       src={totalfloor}
@@ -366,7 +365,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* facing */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img src={facing} alt="bedroom" className="object-cover" />
                   </div>
@@ -378,7 +377,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* Balcony */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img src={balcony} alt="bedroom" className="object-cover" />
                   </div>
@@ -392,7 +391,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* Furinishing */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img
                       src={furnishing}
@@ -409,8 +408,8 @@ const Page8 = () => {
                     </p>
                   </div>
                 </div>
-                {/* Block */}
-                <div className="flex">
+                {/* Tenant */}
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img src={tenant} alt="bedroom" className="object-cover" />
                   </div>
@@ -424,7 +423,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* Flooring */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img src={tiles} alt="bedroom" className="object-cover" />
                   </div>
@@ -438,7 +437,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* Availability */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img
                       src={availability}
@@ -456,7 +455,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* Water Supply */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img src={water2} alt="bedroom" className="object-cover" />
                   </div>
@@ -470,7 +469,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* pets */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img src={pets} alt="bedroom" className="object-cover" />
                   </div>
@@ -484,7 +483,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* Non-Veg */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img src={nonVeg} alt="bedroom" className="object-cover" />
                   </div>
@@ -498,7 +497,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* electricity */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img
                       src={electricity}
@@ -516,7 +515,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* Age */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img src={age} alt="bedroom" className="object-cover" />
                   </div>
@@ -530,7 +529,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* Type */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img src={type} alt="bedroom" className="object-cover" />
                   </div>
@@ -544,7 +543,7 @@ const Page8 = () => {
                   </div>
                 </div>
                 {/* Security */}
-                <div className="flex">
+                <div className="flex flex-col sm:flex-row items-center">
                   <div className="w-10 h-10 overflow-hidden p-2">
                     <img
                       src={security2}
@@ -565,17 +564,17 @@ const Page8 = () => {
             </div>
 
             {/* Amenities */}
-            <div className="flex flex-col gap-10 p-10 border-x-2 border-b-2 rounded-md">
-              <h2 className="text-[32px] font-500 font-merriweatherSans">
+            <div className="flex flex-col gap-10 p-5 sm:p-10 border-x-2 border-b-2 rounded-md">
+              <h2 className="text-[20px] sm:text-[32px] max-sm:text-center font-500 font-merriweatherSans">
                 Amenities
               </h2>
-              <div className="grid grid-cols-4 gap-10">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 sm:gap-10">
                 {/* Block */}
 
                 {amenities.map((amenity, index) => (
                   <div
                     key={index}
-                    className="flex justify-center w-40 h-16 overflow-hidden"
+                    className="flex justify-center sm:w-40 h-12 sm:h-16 overflow-hidden object-contain"
                   >
                     <img
                       src={getAmenityImage(amenity.name)} // Assuming name directly corresponds to the image URL or path
@@ -588,40 +587,44 @@ const Page8 = () => {
             </div>
 
             {/* Description */}
-            <div className="flex flex-col gap-10 p-10 border-x-2 border-b-2 rounded-md">
-              <h2 className="text-[32px] font-500 font-merriweatherSans">
+            <div className="flex flex-col gap-5 sm:gap-10 p-5 sm:p-10 border-x-2 border-b-2 rounded-md">
+              <h2 className="text-[20px] sm:text-[32px] max-sm:text-center font-500 font-merriweatherSans">
                 Decription
               </h2>
-              <p>{localStorage.getItem("description")}</p>
+              <p className="text-[12px] sm:text-[16px]">{localStorage.getItem("description")}</p>
             </div>
           </div>
 
           {/* Right (Pricing section) */}
-          <div className="w-1/3">
-            <div className="flex gap-16 p-5 bg-[#F6EFE6] text-center">
+          <div className="w-full lg:w-1/3">
+            <div className="flex justify-between xl:px-10 p-5 bg-[#F6EFE6] text-center">
               <div className="flex flex-col">
-                <span className="text-[24px] font-700 font-merriweatherSans">
+                <span className="text-[18px] sm:text-[24px] font-700 font-merriweatherSans">
                   ₹{localStorage.getItem("rent") || "10,000"} / Month
                 </span>
-                <span className="text-sm text-gray-500">(Rent-Negotiable)</span>
+                <span className="text-[12px] sm:text-[14px] text-slate-600">
+                  (Rent-Negotiable)
+                </span>
               </div>
               <div className="flex flex-col">
-                <span className="font-700 text-[24px] font-merriweatherSans">
+                <span className="text-[18px] sm:text-[24px] font-700 font-merriweatherSans">
                   ₹{localStorage.getItem("security") || "20,000"}
                 </span>
-                <span className="text-[14px]">(Deposit)</span>
+                <span className="text-[12px] sm:text-[14px] text-slate-600">
+                  (Deposit)
+                </span>
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 bg-[#FDFAF7] p-10">
+            <div className="flex flex-col gap-2 bg-[#FDFAF7] p-5 xl:p-10">
               <span className="text-[18px] font-600 font-merriweatherSans">
                 Send an Inquiry for this property?
               </span>
               <p className="text-[12px] font-300 text-slate-600">
                 Contact Person : Melvin Lasrado
               </p>
-              <form className="flex flex-col gap-4">
-                <div className="flex gap-2 p-2 bg-white border-2">
+              <form className="flex flex-col gap-4 text-[12px] sm:text-[16px]">
+                <div className="flex items-center gap-2 p-2 bg-white border-2">
                   <Phone className="fill-black"></Phone>
                   <span className="font-600">+91-9999999999</span>
                 </div>
@@ -665,17 +668,17 @@ const Page8 = () => {
         </div>
 
         {/* Section 2 (Explore Neighborhood) */}
-        <div className="flex flex-col gap-10 p-10  rounded-md shadow-2xl shadow-slate-400">
-          <h2 className="text-[32px] font-500 font-merriweatherSans">
+        <div className="flex flex-col gap-10 p-5 sm:p-10 w-full  rounded-md shadow-2xl shadow-slate-400">
+          <h2 className="text-[20px] sm:text-[32px] max-sm:text-center font-500 font-merriweatherSans">
             Explore Neighborhood
           </h2>
 
-          <div className="container flex gap-5">
+          <div className="container flex flex-col lg:flex-row gap-5 w-full">
             {/* <MapComponent></MapComponent> */}
-            <div className="map-left flex flex-col gap-2 w-2/3">
-              <div className="address-bar flex justify-between">
+            <div className="map-left flex flex-col gap-2 w-full lg:w-2/3">
+              <div className="address-bar flex flex-col sm:flex-row justify-between text-[14px] sm:text-[16px]">
                 <div className="flex gap-2 items-center">
-                  <div className="w-7 overflow-hidden">
+                  <div className="w-5 sm:w-7 overflow-hidden">
                     <img
                       src={location}
                       alt="location"
@@ -687,7 +690,7 @@ const Page8 = () => {
                     {localStorage.getItem("landmark") || "Shivaji Temple"}
                   </span>
                 </div>
-                <div className="flex gap-2 items-center w-2/3">
+                <div className="flex gap-2 items-center sm:w-2/3">
                   <label>To:</label>
                   <input
                     type="text"
@@ -697,7 +700,7 @@ const Page8 = () => {
                   />
                   <button
                     onClick={handleSearchClick}
-                    className="p-2 px-20 text-white bg-[#1E324A] rounded-md"
+                    className="p-1 sm:p-2 px-5 sm:px-20 text-white bg-[#1E324A] rounded-md"
                   >
                     Search
                   </button>
@@ -708,10 +711,10 @@ const Page8 = () => {
                 <MapComponent destination={destination2}></MapComponent>
               </div>
             </div>
-            <div className="details-right w-1/3 h-full">
+            <div className="details-right w-full lg:w-1/3 h-full">
               <div className="header grid grid-cols-3 bg-[#F6EFE6] font-merriweatherSans">
                 <div
-                  className={` p-2 px-6 cursor-pointer hover:font-500 ${
+                  className={` p-2 sm:px-6 cursor-pointer hover:font-500 ${
                     neighbourType == "transport"
                       ? "border-b-2 border-slate-700"
                       : ""
@@ -721,7 +724,7 @@ const Page8 = () => {
                   Transport
                 </div>
                 <div
-                  className={` p-2 px-6 cursor-pointer hover:font-500 ${
+                  className={` p-2 sm:px-6 cursor-pointer hover:font-500 ${
                     neighbourType == "essentials"
                       ? "border-b-2 border-slate-700"
                       : ""
@@ -731,7 +734,7 @@ const Page8 = () => {
                   Essentials
                 </div>
                 <div
-                  className={` p-2 px-6 cursor-pointer hover:font-500 ${
+                  className={` p-2 sm:px-6 cursor-pointer hover:font-500 ${
                     neighbourType == "utility"
                       ? "border-b-2 border-slate-700"
                       : ""
@@ -773,14 +776,14 @@ const Page8 = () => {
         </div>
 
         {/* Ratings & Review (Section 3) */}
-        <div className="flex flex-col gap-10 p-10  rounded-md border-2">
-          <h2 className="text-[32px] font-500 font-merriweatherSans">
+        <div className="flex flex-col gap-10 p-5 sm:p-10 border-x-2 border-b-2 rounded-md">
+          <h2 className="text-[20px] sm:text-[32px] max-sm:text-center font-500 font-merriweatherSans">
             Ratings & Reviews
           </h2>
 
-          <div className="flex justify-between">
+          <div className="flex flex-col sm:flex-row gap-10 justify-between">
             {/* Review 1 */}
-            <div className="w-2/5 flex flex-col gap-3">
+            <div className="sm:w-2/5 flex flex-col gap-3">
               <div className="header flex justify-between">
                 <div className="flex gap-2">
                   <UserRound
@@ -801,17 +804,21 @@ const Page8 = () => {
               </div>
 
               <div className="text">
-                <span className="font-500">Good Society</span>
-                <p>
+                <span className="text-[14px] sm:text-[16px] font-500">
+                  Good Society
+                </span>
+                <p className="text-[13px] sm:text-[14px]">
                   The garden view is mesmerizing, the exposure of natural light
                   is good.
                 </p>
-                <p>Easy access to stores, markets and schools.</p>
+                <p className="text-[13px] sm:text-[14px]">
+                  Easy access to stores, markets and schools.
+                </p>
               </div>
             </div>
 
             {/* Review 2 */}
-            <div className="w-2/5 flex flex-col gap-3">
+            <div className="sm:w-2/5 flex flex-col gap-3">
               <div className="header flex justify-between">
                 <div className="flex gap-2">
                   <UserRound
@@ -832,18 +839,22 @@ const Page8 = () => {
               </div>
 
               <div className="text">
-                <span className="font-500">Good Society</span>
-                <p>
+                <span className="text-[14px] sm:text-[16px] font-500">
+                  Good Society
+                </span>
+                <p className="text-[13px] sm:text-[14px]">
                   The garden view is mesmerizing, the exposure of natural light
                   is good.
                 </p>
-                <p>Easy access to stores, markets and schools.</p>
+                <p className="text-[13px] sm:text-[14px]">
+                  Easy access to stores, markets and schools.
+                </p>
               </div>
             </div>
           </div>
 
-          <div>
-            <button className="p-2 px-20 text-white bg-[#1E324A] rounded-lg">
+          <div className="flex max-sm:justify-center">
+            <button className="p-2 px-10 sm:px-20 text-white bg-[#1E324A] rounded-lg">
               Write Review
             </button>
           </div>
@@ -851,24 +862,24 @@ const Page8 = () => {
 
         {/* Similar Properties (Section 4) */}
         <div className="flex flex-col gap-10 p-14  rounded-md bg-[#FDFAF7] -mx-16">
-          <h2 className="text-[32px] font-500 font-merriweatherSans">
+          <h2 className="text-[20px] sm:text-[32px] max-sm:text-center font-500 font-merriweatherSans">
             Similar Properties in Mira Road
           </h2>
 
-          <div className="flex justify-between">
-            <img src={property} alt="property" className="w-80" />
-            <img src={property} alt="property" className="w-80" />
-            <img src={property} alt="property" className="w-80" />
-            <img src={property} alt="property" className="w-80" />
+          <div className="flex justify-center sm:justify-between flex-wrap gap-5 ">
+            <img src={property} alt="property" className="w-48 sm:w-80" />
+            <img src={property} alt="property" className="w-48 sm:w-80" />
+            <img src={property} alt="property" className="w-48 sm:w-80" />
+            <img src={property} alt="property" className="w-48 sm:w-80" />
           </div>
         </div>
 
         {/* About Miraroad (Section 5) */}
-        <div className="flex flex-col gap-10 p-10  rounded-md border-2">
-          <h2 className="text-[32px] font-500 font-merriweatherSans">
+        <div className="flex flex-col gap-10 p-5 sm:p-10 border-x-2 border-b-2 rounded-md">
+          <h2 className="text-[20px] sm:text-[32px] max-sm:text-center font-500 font-merriweatherSans">
             About Mira Road
           </h2>
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 text-[14px] sm:text-[16px]">
             <p>
               Spread over 510 sqft. this home is an ideal place to live in.
               Access to bus station & medical stores is very easy & convenient
@@ -884,8 +895,8 @@ const Page8 = () => {
             <p>Never miss out on lifestyle as Rassaz Mall......</p>
             <a className="font-600 underline cursor-pointer">Show more</a>
           </div>
-          <div>
-            <button className="p-2 px-20 text-white bg-[#1E324A] rounded-lg">
+          <div className="flex max-sm:justify-center">
+            <button className="p-2 px-10 sm:px-20 text-white bg-[#1E324A] rounded-lg">
               Write Review
             </button>
           </div>
@@ -893,50 +904,52 @@ const Page8 = () => {
       </div>
 
       {/* Footer */}
-      <div className="flex flex-col gap-10 bg-[#1E324A] text-white p-10 px-20">
-        <div className="grid grid-cols-5">
+      <div className="flex flex-col gap-10 bg-[#1E324A] text-white p-10 md:px-20">
+        <div className="flex flex-col md:flex-row gap-10">
           <div>
             <img src={logo} alt="" />
           </div>
-          <div className="flex flex-col gap-4">
-            <ul className="hover:underline">HOME</ul>
-            <ul className="hover:underline">PROPERTIES</ul>
-            <ul className="hover:underline">LIST YOUR PROPERTY</ul>
-            <ul className="hover:underline">SAVED SEARCHES</ul>
-          </div>
-          <div className="flex flex-col gap-4">
-            <ul className="hover:underline">ABOUT MIRA ROAD</ul>
-            <ul className="hover:underline">EMI CALCULATOR</ul>
-            <ul className="hover:underline">TEATIMONIALS</ul>
-            <ul className="hover:underline">EXPLORE NEIGHBORHOOD</ul>
-          </div>
-          <div className="flex flex-col gap-4">
-            <ul className="hover:underline">ABOUT US</ul>
-            <ul className="hover:underline">CONTACT US</ul>
-            <ul className="hover:underline">FAQ'S</ul>
-          </div>
-          <div className="flex flex-col gap-4">
-            <div>
-              <h1 className="text-[20px]">CONTACT US</h1>
-              <p className="text-[12px]">
-                B/28, Shop No 1, Madhukar Co Op Housing Society, Sector 5,
-                Shanti
-              </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 text-[14px] lg:text-[16px]">
+            <div className="flex flex-col gap-1 sm:gap-4">
+              <ul className="hover:underline">HOME</ul>
+              <ul className="hover:underline">PROPERTIES</ul>
+              <ul className="hover:underline">LIST YOUR PROPERTY</ul>
+              <ul className="hover:underline">SAVED SEARCHES</ul>
             </div>
-            <div>
-              <h1 className="text-[20px]">OFFICE HOURS</h1>
-              <p className="text-[12px]">
-                B/28, Shop No 1, Madhukar Co Op Housing Society, Sector 5,
-                Shanti
-              </p>
+            <div className="flex flex-col gap-1 sm:gap-4">
+              <ul className="hover:underline">ABOUT MIRA ROAD</ul>
+              <ul className="hover:underline">EMI CALCULATOR</ul>
+              <ul className="hover:underline">TEATIMONIALS</ul>
+              <ul className="hover:underline">EXPLORE NEIGHBORHOOD</ul>
+            </div>
+            <div className="flex flex-col gap-1 sm:gap-4">
+              <ul className="hover:underline">ABOUT US</ul>
+              <ul className="hover:underline">CONTACT US</ul>
+              <ul className="hover:underline">FAQ'S</ul>
+            </div>
+            <div className="flex flex-col gap-1 sm:gap-4">
+              <div>
+                <h1 className="lg:text-[20px]">CONTACT US</h1>
+                <p className="text-[11px] lg:text-[12px]">
+                  B/28, Shop No 1, Madhukar Co Op Housing Society, Sector 5,
+                  Shanti
+                </p>
+              </div>
+              <div>
+                <h1 className="lg:text-[20px]">OFFICE HOURS</h1>
+                <p className="text-[11px] sm:text-[12px]">
+                  B/28, Shop No 1, Madhukar Co Op Housing Society, Sector 5,
+                  Shanti
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="divider bg-white h-[0.5px]"></div>
 
-        <div className="flex justify-between">
-          <div className="text-[12px]">
+        <div className="flex flex-col sm:flex-row gap-5 justify-between">
+          <div className="text-[11px] sm:text-[12px]">
             <p>
               © 2024 Dylan Estates. All rights reserved. Dylan Estates- Your
               Neighborhood Experts
