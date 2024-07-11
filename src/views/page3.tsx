@@ -10,8 +10,8 @@ const Page3 = () => {
   const [landmark, setLandmark] = useState("");
   const [city, setCity] = useState("");
 
-  const [destination, setDestination] = useState("");
-  const [destination2, setDestination2] = useState("");
+  // const [destination, setDestination] = useState("");
+  // const [destination2, setDestination2] = useState("");
 
   const navigate = useNavigate();
 
@@ -151,14 +151,14 @@ const Page3 = () => {
                 </p>
                 <div className="relative flex justify-center h-96 w-full">
                   <div className="absolute top-14 w-2/3">
-                  <MapPin className="absolute left-2 top-2 "/>
+                    <MapPin className="absolute left-2 top-2 " />
                     <input
                       type="text"
                       placeholder="Search your society or nearest landmark"
-                      className=" p-2 px-10 w-full"
+                      className=" p-3 px-10 w-full text-[14px]"
                     />
                   </div>
-                  <MapComponent destination={destination2}></MapComponent>
+                  <MapComponent destination=""></MapComponent>
                 </div>
               </div>
             </div>

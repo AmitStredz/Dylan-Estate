@@ -57,40 +57,6 @@ const Page4 = () => {
     { name: "club", state: false },
     { name: "pool", state: false },
   ]);
-
-  // const [amenities, setAmenities] = useState<Amenity[]>([
-  //   { security: false },
-  //   { cctv: false },
-  //   { lift: false },
-  //   { parking: false },
-  //   { water: false },
-  //   { powerPartial: false },
-  //   { powerFull: false },
-  //   { staff: false },
-  //   { garden: false },
-  //   { playArea: false },
-  //   { sport: false },
-  //   { gym: false },
-  //   { hall: false },
-  //   { center: false },
-  //   { club: false },
-  //   { pool: false },
-  //   { intercom: false },
-  //   { fire: false },
-  //   { club: false },
-  //   { pool: false },
-  // ]);
-
-  // const handleCheckboxChange = (index: number, key: string) => {
-  //   const newAmenities = [...amenities]; // Create a copy of the state array
-  //   // Check if the index is valid
-  //   if (newAmenities[index]) {
-  //     console.log(index);
-  //     newAmenities[index][key] = !newAmenities[index][key]; // Toggle the checkbox value
-  //     setAmenities(newAmenities); // Update the state with the new array
-  //   }
-  // };
-
   const handleCheckboxChange = (index: number) => {
     const newAmenities = [...amenities];
     newAmenities[index].state = !newAmenities[index].state;
@@ -523,26 +489,7 @@ const Page4 = () => {
                   <span className="text-red-500">*</span> Society Amenities
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 justify-center items-center text-[12px] sm:text-[16px] p-3">
-                  {/* {amenities.map((amenity, index) =>
-                    Object.entries(amenity).map(([key, value]) => (
-                      // console.log(key);
-                      <div className="flex flex-col items-center gap-5">
-                        <div className="flex justify-center w-32 h-16 overflow-hidden object-contain">
-                          <img
-                            src={getAmenityImage(key)}
-                            alt={key}
-                            className="object-cover"
-                          />
-                        </div>
-                        <input
-                          type="checkbox"
-                          // checked={value}
-                          onChange={() => handleCheckboxChange(index, key)}
-                          className="size-5 sm:size-6 cursor-pointer"
-                        />
-                      </div>
-                    ))
-                  )} */}
+                 
                   {amenities.map((amenity, index) => (
                     <div
                       key={index}

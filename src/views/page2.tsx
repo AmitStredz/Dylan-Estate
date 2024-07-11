@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "./header";
 import { useNavigate } from "react-router-dom";
 
@@ -38,7 +38,6 @@ const Page2 = () => {
     console.log("PropertyFor: ", availability);
     console.log("PropertyFor: ", description);
 
-
     localStorage.setItem("propertyFor", propertyFor);
     localStorage.setItem("propertyType", propertyType);
     localStorage.setItem("propertySubType", propertySubType);
@@ -55,32 +54,8 @@ const Page2 = () => {
     localStorage.setItem("availability", availability);
     localStorage.setItem("description", description);
 
-    navigate('/page3')
+    navigate("/page3");
   };
-
-  // const getButtonClasses = (isSelected: boolean) =>
-  //   `p-2 sm:px-4 border rounded-full ${
-  //     isSelected
-  //       ? "bg-gradient-to-r from-blue-400 to-[#122b49] text-white shadow-lg"
-  //       : "bg-white text-black"
-  //   }`;
-
-  // const handleResidentialOptionToggle = (option: string) => {
-  //   setResidentialOptions((prev) =>
-  //     prev.includes(option)
-  //       ? prev.filter((item) => item !== option)
-  //       : [...prev, option]
-  //   );
-  // };
-
-  // const handleCommercialOptionToggle = (option: string) => {
-  //   setCommercialOptions((prev) =>
-  //     prev.includes(option)
-  //       ? prev.filter((item) => item !== option)
-  //       : [...prev, option]
-  //   );
-  // };
-
   return (
     <div className="h-screen w-screen overflow-hidden">
       <Header customClass="bg-[#FCF8F4]" />
@@ -137,7 +112,7 @@ const Page2 = () => {
                       name="property-for"
                       value="rent"
                       className="size-5 sm:size-6"
-                      onChange={()=> setPropertyFor("Rent")}
+                      onChange={() => setPropertyFor("Rent")}
                     />
                     Rent
                   </label>
@@ -147,8 +122,7 @@ const Page2 = () => {
                       name="property-for"
                       value="sale"
                       className="size-5 sm:size-6"
-                      onChange={()=> setPropertyFor("Sale")}
-
+                      onChange={() => setPropertyFor("Sale")}
                     />
                     Sale
                   </label>
@@ -765,7 +739,7 @@ const Page2 = () => {
                   className="w-full text-[12px] sm:text-[16px] min-h-24 p-2 border rounded-md border-slate-600"
                   placeholder="Add a description for your property to attrct the best tenant"
                   value={description}
-                  onChange={(e)=> setDescription(e.target.value)}
+                  onChange={(e) => setDescription(e.target.value)}
                 />
               </div>
             </div>

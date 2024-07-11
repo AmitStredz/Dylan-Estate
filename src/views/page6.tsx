@@ -1,12 +1,9 @@
 import { useState } from "react";
 import Header from "./header";
-import { useNavigate } from "react-router-dom";
 
 import ConfirmModal from "./confirmModal";
 
 const Page6 = () => {
-  const navigate = useNavigate();
-
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [confirmModal, setConfirmModal] = useState(false);

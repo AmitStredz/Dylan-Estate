@@ -8,12 +8,11 @@ import {
   MapPin,
   Phone,
   Star,
-  StarHalf,
   Upload,
   UserRound,
 } from "lucide-react";
 import Header from "./header2";
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import MapComponent from "./mapComponent";
@@ -89,20 +88,6 @@ const Page8 = () => {
     localStorage.setItem("selectedImages", JSON.stringify(selectedImages));
   }, [selectedImages]);
 
-  // Import Amenities list from LoaclStorage
-  // useEffect(() => {
-  //   // Retrieve amenities from localStorage
-  //   const storedAmenitiesString = localStorage.getItem("amenities");
-  //   if (storedAmenitiesString) {
-  //     const storedAmenities = JSON.parse(storedAmenitiesString);
-  //     const availableAmenities = Object.entries(storedAmenities).filter(
-  //       ([key, value]) => value
-  //     );
-  //     setAmenities(availableAmenities);
-  //     console.log("hello", amenities);
-  //   }
-  //   console.log("Amenities: ", amenities);
-  // }, []);
   useEffect(() => {
     // Retrieve amenity data from localStorage
     const storedAmenities = localStorage.getItem("amenities");
@@ -140,16 +125,6 @@ const Page8 = () => {
       prevIndex === 0 ? selectedImages.length - 1 : prevIndex - 1
     );
   };
-
-  // amenities.forEach((amenity) => {
-  //   const entries = Object.entries(amenity);
-  //   entries.forEach(([key, value]) => {
-  //     if (value) {
-  //       console.log(key);
-  //     }
-  //   });
-
-  // });
 
   const busStations = [
     "Mira Road Station (E) 0.7 km | 3 mins",
@@ -211,19 +186,19 @@ const Page8 = () => {
             <div className="">
               {/* Title */}
               <h1 className="text-[26px] font-400 font-merriweatherSans mb-4">
-                {localStorage.getItem("bhkType")}{" "}
-                {localStorage.getItem("propertySubType")} For{" "}
-                {localStorage.getItem("propertyFor")} in{" "}
-                {localStorage.getItem("locality")} (
-                {localStorage.getItem("builtArea")} Sq.ft.)
+                {localStorage.getItem("bhkType") || "1 BHK"}{" "}
+                {localStorage.getItem("propertySubType") || "House / Villa"} For{" "}
+                {localStorage.getItem("propertyFor") || "Rent"} in{" "}
+                {localStorage.getItem("locality") || "Chandra Nagar"} (
+                {localStorage.getItem("builtArea") || "5000"} Sq.ft.)
               </h1>
               {/* Address */}
               <div className="address flex justify-between p-2">
                 <span className="flex items-center font-300 text-[16px]">
                   <MapPin className="mr-1" />
-                  {localStorage.getItem("locality")}, near{" "}
-                  {localStorage.getItem("landmark")},{" "}
-                  {localStorage.getItem("city")}
+                  {localStorage.getItem("locality") || "Chandra Nagar"}, near{" "}
+                  {localStorage.getItem("landmark") || "Shivaji Temple"},{" "}
+                  {localStorage.getItem("city") || "Lucknow"}
                 </span>
                 <div className="flex gap-2">
                   <div className="shadow-2xl shadow-black rounded-full cursor-pointer p-2">
@@ -596,42 +571,7 @@ const Page8 = () => {
               </h2>
               <div className="grid grid-cols-4 gap-10">
                 {/* Block */}
-                {/* {amenities.map((amenity, index) =>
-                  Object.entries(amenity).map(([key, value]) => (
-                    <div key={index} className="w-32 h-16 overflow-hidden">
-                      <img alt={key} className="object-cover" />
-                    </div>
-                  ))
-                )} */}
-                {/* {amenities.map(([amenity, index]) => (
-                   <div key={amenity} className="w-32 h-16 overflow-hidden">
-                   <img src={url} alt={url} className="object-cover" />
-                 </div>
-                ))} */}
-                {/* {amenities.map((amenity, index) => {
-                  console.log("hello", amenity);
-                  return <></>
-                })} */}
-                {/* {amenities.map((amenity, index) => 
-                    Object.entries(amenity).map(([key, value]) => (
-                      // console.log(key);
-                    <div  className="flex flex-col items-center gap-5">
-                      <div className="flex justify-center w-32 h-16 overflow-hidden object-contain">
-                        <img
-                          src={getAmenityImage(key)}
-                          alt={key}
-                          className="object-cover"
-                        />
-                      </div>
-                      <input
-                        type="checkbox"
-                        // checked={value}
-                        onChange={() => handleCheckboxChange(index, key)}
-                        className="size-5 sm:size-6 cursor-pointer"
-                      />
-                    </div>
-                  ))
-                )} */}
+
                 {amenities.map((amenity, index) => (
                   <div
                     key={index}
@@ -652,9 +592,7 @@ const Page8 = () => {
               <h2 className="text-[32px] font-500 font-merriweatherSans">
                 Decription
               </h2>
-              <p>
-              {localStorage.getItem("description")}
-              </p>
+              <p>{localStorage.getItem("description")}</p>
             </div>
           </div>
 
@@ -663,13 +601,13 @@ const Page8 = () => {
             <div className="flex gap-16 p-5 bg-[#F6EFE6] text-center">
               <div className="flex flex-col">
                 <span className="text-[24px] font-700 font-merriweatherSans">
-                  ₹{localStorage.getItem("rent")} / Month
+                  ₹{localStorage.getItem("rent") || "10,000"} / Month
                 </span>
                 <span className="text-sm text-gray-500">(Rent-Negotiable)</span>
               </div>
               <div className="flex flex-col">
                 <span className="font-700 text-[24px] font-merriweatherSans">
-                  ₹{localStorage.getItem("security")}
+                  ₹{localStorage.getItem("security") || "20,000"}
                 </span>
                 <span className="text-[14px]">(Deposit)</span>
               </div>
@@ -744,7 +682,10 @@ const Page8 = () => {
                       className="object-cover"
                     />
                   </div>
-                  <span>{localStorage.getItem("locality")}, {localStorage.getItem("landmark")}</span>
+                  <span>
+                    {localStorage.getItem("locality") || "Chandra Nagar"},{" "}
+                    {localStorage.getItem("landmark") || "Shivaji Temple"}
+                  </span>
                 </div>
                 <div className="flex gap-2 items-center w-2/3">
                   <label>To:</label>
@@ -829,8 +770,6 @@ const Page8 = () => {
               </div>
             </div>
           </div>
-
-          {/* Placeholder for map */}
         </div>
 
         {/* Ratings & Review (Section 3) */}
