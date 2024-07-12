@@ -84,6 +84,7 @@ const Page8 = () => {
   const [neighbourType, setNeighbourType] = useState<string>("transport");
   const [destination, setDestination] = useState("");
   const [destination2, setDestination2] = useState("");
+  const [openDropdown, setOpenDropdown] = useState("Bus Station");
 
   // useEffect(() => {
   //   // Load images from localStorage
@@ -766,21 +767,29 @@ const Page8 = () => {
                       title="Bus Station"
                       items={busStations}
                       logo="BusFront"
+                      isOpen={openDropdown == "Bus Station"}
+                      onDropdownClick={() => setOpenDropdown("Bus Station")}
                     />
                     <Dropdown
                       title="Railway Station"
                       items={railwayStations}
                       logo="TramFront"
+                      isOpen={openDropdown == "Railway Station"}
+                      onDropdownClick={() => setOpenDropdown("Railway Station")}
                     />
                     <Dropdown
                       title="Metro Station"
                       items={railwayStations}
                       logo="TrainFront"
+                      isOpen={openDropdown == "Metro Station"}
+                      onDropdownClick={() => setOpenDropdown("Metro Station")}
                     />
                     <Dropdown
                       title="Airport"
                       items={busStations}
                       logo="Plane"
+                      isOpen={openDropdown == "Airport"}
+                      onDropdownClick={() => setOpenDropdown("Airport")}
                     />
                   </>
                 ) : neighbourType == "essentials" ? (
@@ -789,18 +798,30 @@ const Page8 = () => {
                       title="Hospitals"
                       items={hospitals}
                       logo="Hospital"
+                      isOpen={openDropdown == "Hospitals"}
+                      onDropdownClick={() => setOpenDropdown("Hospitals")}
                     />
                     <Dropdown
                       title="Pharmacy"
                       items={pharmacy}
                       logo="BriefcaseMedical"
+                      isOpen={openDropdown == "Pharmacy"}
+                      onDropdownClick={() => setOpenDropdown("Pharmacy")}
                     />
                     <Dropdown
                       title="Schools"
                       items={hospitals}
                       logo="GraduationCap"
+                      isOpen={openDropdown == "Schools"}
+                      onDropdownClick={() => setOpenDropdown("Schools")}
                     />
-                    <Dropdown title="ATM" items={pharmacy} logo="Landmark" />
+                    <Dropdown
+                      title="ATM"
+                      items={pharmacy}
+                      logo="Landmark"
+                      isOpen={openDropdown == "ATM"}
+                      onDropdownClick={() => setOpenDropdown("ATM")}
+                    />
                   </>
                 ) : neighbourType == "utility" ? (
                   <>
@@ -808,17 +829,29 @@ const Page8 = () => {
                       title="Super markets"
                       items={superMarket}
                       logo="ShoppingCart"
+                      isOpen={openDropdown == "Super markets"}
+                      onDropdownClick={() => setOpenDropdown("Super markets")}
                     />
                     <Dropdown
                       title="Shopping Mall"
                       items={shoppingMall}
                       logo="ShoppingBag"
+                      isOpen={openDropdown == "Shopping Mall"}
+                      onDropdownClick={() => setOpenDropdown("Shopping Mall")}
                     />
-                    <Dropdown title="Gym" items={superMarket} logo="Dumbbell" />
+                    <Dropdown
+                      title="Gym"
+                      items={superMarket}
+                      logo="Dumbbell"
+                      isOpen={openDropdown == "Gym"}
+                      onDropdownClick={() => setOpenDropdown("Gym")}
+                    />
                     <Dropdown
                       title="Park"
                       items={shoppingMall}
                       logo="FerrisWheel"
+                      isOpen={openDropdown == "Park"}
+                      onDropdownClick={() => setOpenDropdown("Park")}
                     />
                   </>
                 ) : (
@@ -1077,18 +1110,17 @@ interface DropdownProps {
   title: string;
   items: string[];
   logo: string;
+  isOpen: boolean;
+  onDropdownClick: () => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ title, items, logo }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  // const logoMapping = {
-  //   BusFront: BusFront,
-  //   MetroFront: TrainFront,
-  //   RailwayFront: TramFront,
-  //   AirportFront: Plane,
-  // };
-
+const Dropdown: React.FC<DropdownProps> = ({
+  title,
+  items,
+  logo,
+  isOpen,
+  onDropdownClick,
+}) => {
   const logoMapping: { [key: string]: React.ComponentType } = {
     BusFront,
     TrainFront,
@@ -1111,11 +1143,11 @@ const Dropdown: React.FC<DropdownProps> = ({ title, items, logo }) => {
     <div className="border border-gray-200 rounded-lg shadow-sm bg-white">
       <button
         className="w-full flex justify-between items-center p-2"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={onDropdownClick}
       >
         <div className="flex gap-3">
-          {IconComponent && <IconComponent />}{" "}
           {/* Render the icon component dynamically */}
+          {IconComponent && <IconComponent />}
           <span className="font-medium">{title}</span>
         </div>
         <span>{isOpen ? <ChevronUp /> : <ChevronDown />}</span>
