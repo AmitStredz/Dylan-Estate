@@ -1,13 +1,25 @@
 import {
   ArrowLeft,
+  BriefcaseMedical,
+  BusFront,
   ChevronDown,
   ChevronUp,
+  Dumbbell,
+  FerrisWheel,
   Globe,
+  GraduationCap,
   Heart,
+  Hospital,
   IndianRupee,
+  Landmark,
   MapPin,
   Phone,
+  Plane,
+  ShoppingBag,
+  ShoppingCart,
   Star,
+  TrainFront,
+  TramFront,
   Upload,
   UserRound,
 } from "lucide-react";
@@ -591,7 +603,9 @@ const Page8 = () => {
               <h2 className="text-[20px] sm:text-[32px] max-sm:text-center font-500 font-merriweatherSans">
                 Decription
               </h2>
-              <p className="text-[12px] sm:text-[16px]">{localStorage.getItem("description")}</p>
+              <p className="text-[12px] sm:text-[16px]">
+                {localStorage.getItem("description")}
+              </p>
             </div>
           </div>
 
@@ -748,24 +762,64 @@ const Page8 = () => {
               <div className="content flex flex-col gap-3 bg-[#FDFAF7] h-full w-full p-4 px-5">
                 {neighbourType == "transport" ? (
                   <>
-                    <Dropdown title="Bus Station" items={busStations} />
-                    <Dropdown title="Railway Station" items={railwayStations} />
-                    <Dropdown title="Metro Station" items={railwayStations} />
-                    <Dropdown title="Airport" items={busStations} />
+                    <Dropdown
+                      title="Bus Station"
+                      items={busStations}
+                      logo="BusFront"
+                    />
+                    <Dropdown
+                      title="Railway Station"
+                      items={railwayStations}
+                      logo="TramFront"
+                    />
+                    <Dropdown
+                      title="Metro Station"
+                      items={railwayStations}
+                      logo="TrainFront"
+                    />
+                    <Dropdown
+                      title="Airport"
+                      items={busStations}
+                      logo="Plane"
+                    />
                   </>
                 ) : neighbourType == "essentials" ? (
                   <>
-                    <Dropdown title="Hospitals" items={hospitals} />
-                    <Dropdown title="Pharmacy" items={pharmacy} />
-                    <Dropdown title="Schools" items={hospitals} />
-                    <Dropdown title="ATM" items={pharmacy} />
+                    <Dropdown
+                      title="Hospitals"
+                      items={hospitals}
+                      logo="Hospital"
+                    />
+                    <Dropdown
+                      title="Pharmacy"
+                      items={pharmacy}
+                      logo="BriefcaseMedical"
+                    />
+                    <Dropdown
+                      title="Schools"
+                      items={hospitals}
+                      logo="GraduationCap"
+                    />
+                    <Dropdown title="ATM" items={pharmacy} logo="Landmark" />
                   </>
                 ) : neighbourType == "utility" ? (
                   <>
-                    <Dropdown title="Super markets" items={superMarket} />
-                    <Dropdown title="Shopping Mall" items={shoppingMall} />
-                    <Dropdown title="Gym" items={superMarket} />
-                    <Dropdown title="Park" items={shoppingMall} />
+                    <Dropdown
+                      title="Super markets"
+                      items={superMarket}
+                      logo="ShoppingCart"
+                    />
+                    <Dropdown
+                      title="Shopping Mall"
+                      items={shoppingMall}
+                      logo="ShoppingBag"
+                    />
+                    <Dropdown title="Gym" items={superMarket} logo="Dumbbell" />
+                    <Dropdown
+                      title="Park"
+                      items={shoppingMall}
+                      logo="FerrisWheel"
+                    />
                   </>
                 ) : (
                   <></>
@@ -1019,14 +1073,39 @@ const getAmenityImage = (key: string) => {
       return "";
   }
 };
-
 interface DropdownProps {
   title: string;
   items: string[];
+  logo: string;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ title, items }) => {
+const Dropdown: React.FC<DropdownProps> = ({ title, items, logo }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  // const logoMapping = {
+  //   BusFront: BusFront,
+  //   MetroFront: TrainFront,
+  //   RailwayFront: TramFront,
+  //   AirportFront: Plane,
+  // };
+
+  const logoMapping: { [key: string]: React.ComponentType } = {
+    BusFront,
+    TrainFront,
+    TramFront,
+    Plane,
+
+    Hospital,
+    BriefcaseMedical,
+    GraduationCap,
+    Landmark,
+
+    ShoppingCart,
+    ShoppingBag,
+    Dumbbell,
+    FerrisWheel,
+  };
+  const IconComponent = logoMapping[logo] as React.ComponentType;
 
   return (
     <div className="border border-gray-200 rounded-lg shadow-sm bg-white">
@@ -1034,11 +1113,15 @@ const Dropdown: React.FC<DropdownProps> = ({ title, items }) => {
         className="w-full flex justify-between items-center p-2"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="font-medium">{title}</span>
+        <div className="flex gap-3">
+          {IconComponent && <IconComponent />}{" "}
+          {/* Render the icon component dynamically */}
+          <span className="font-medium">{title}</span>
+        </div>
         <span>{isOpen ? <ChevronUp /> : <ChevronDown />}</span>
       </button>
       {isOpen && (
-        <ul className="mt-2 bg-white ">
+        <ul className="mt-2 bg-white">
           {items.map((item, index) => (
             <li key={index} className="px-4 py-2 border-b last:border-none">
               {item}
