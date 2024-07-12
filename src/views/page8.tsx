@@ -73,19 +73,19 @@ const Page8 = () => {
   const [destination, setDestination] = useState("");
   const [destination2, setDestination2] = useState("");
 
-  useEffect(() => {
-    // Load images from localStorage
-    const storedImages = localStorage.getItem("selectedImages");
-    if (storedImages) {
-      setSelectedImages(JSON.parse(storedImages));
-      console.log("image retrieved...");
-    }
-  }, []);
+  // useEffect(() => {
+  //   // Load images from localStorage
+  //   const storedImages = localStorage.getItem("selectedImages");
+  //   if (storedImages) {
+  //     setSelectedImages(JSON.parse(storedImages));
+  //     console.log("image retrieved...");
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    // Save images to localStorage
-    localStorage.setItem("selectedImages", JSON.stringify(selectedImages));
-  }, [selectedImages]);
+  // useEffect(() => {
+  //   // Save images to localStorage
+  //   localStorage.setItem("selectedImages", JSON.stringify(selectedImages));
+  // }, [selectedImages]);
 
   useEffect(() => {
     // Retrieve amenity data from localStorage
